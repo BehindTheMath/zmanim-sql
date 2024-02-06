@@ -12,8 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker compose up -d
-      - run: docker container inspect mysql
-      - run: docker compose exec mysql ls -la /docker-entrypoint-initdb.d/
       - run: |
           while true; do
             $MYSQL_CMD -u root --batch --database db1 --execute 'SELECT 1;' && break;
