@@ -5,10 +5,12 @@ set -eu -o pipefail
 # Load all lines into an array.
 mapfile -t lines < ./tests/hebrewcalendar/jewish-date/tests.psv
 
+# Log the test cases
 echo 'Tests:'
 printf '  %s\n' "${lines[@]}"
 echo '-------'
 
+# Loop through the test cases
 for line in "${lines[@]}"; do
 #  echo "$line"
 
@@ -23,6 +25,7 @@ for line in "${lines[@]}"; do
   output=$($MYSQL_CMD -u root --batch --database db1 --skip-column-names --execute "$sql" | sed 's/\t/,/g' | tail -n 1)
   printf "  Output: '%s'\n" "$output"
 
+  # Assert the actual output matches the expected output
   if [[ "$output" == "$expected" ]]
     then
       echo 'Passed.'
