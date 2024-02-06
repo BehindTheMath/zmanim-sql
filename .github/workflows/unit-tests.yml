@@ -1,7 +1,7 @@
-name: Node.js Tests
+name: MySQL tests
 on: push
 jobs:
-  unit-tests:
+  jewish-date:
     runs-on: ubuntu-latest
     container: mysql:5.7
     defaults:
@@ -18,4 +18,4 @@ jobs:
             mysql -u root --batch --database db1 --execute 'SELECT 1; && break;
             sleep 1;
             done;
-      - run: bash ./tests/run-tests.sh
+      - run: bash ./tests/hebrewcalendar/jewish-date/run-tests.sh
