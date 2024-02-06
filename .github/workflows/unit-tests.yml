@@ -8,7 +8,7 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v3
-      - run: docker compose up -d -f ./tests/docker-compose.yml
+      - run: docker compose -f ./tests/docker-compose.yml up -d
       - run: |
           while true; do
             docker exec mysql mysql -u root --batch --database db1 --execute 'SELECT 1;' && break;
