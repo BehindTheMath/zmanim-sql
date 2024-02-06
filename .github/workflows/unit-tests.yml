@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           while true; do
-            mysql -u root --batch --database db1 --execute 'SELECT 1; && break;
+            mysql -u root --batch --database db1 --execute 'SELECT 1;' && break;
             sleep 1;
             done;
       - run: bash ./tests/hebrewcalendar/jewish-date/run-tests.sh
