@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 # Load all lines into an array.
-mapfile -t lines < ./tests.psv
+mapfile -t lines < ./tests/hebrewcalendar/jewish-date/tests.psv
 
 echo 'Tests:'
 printf '  %s\n' "${lines[@]}"

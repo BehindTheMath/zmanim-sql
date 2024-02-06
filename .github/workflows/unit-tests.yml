@@ -7,7 +7,7 @@ jobs:
       run:
         shell: bash
     env:
-      COMPOSE_FILE: $GITHUB_WORKSPACE/tests/docker-compose.yml
+      COMPOSE_FILE: ./tests/docker-compose.yml
       MYSQL_CMD: docker compose exec mysql mysql
     steps:
       - uses: actions/checkout@v3
@@ -17,5 +17,5 @@ jobs:
             $MYSQL_CMD -u root --batch --database db1 --execute 'SELECT 1;' && break;
             sleep 1;
             done;
-      - run: bash $GITHUB_WORKSPACE/tests/hebrewcalendar/jewish-date/run-tests.sh
+      - run: bash ./tests/hebrewcalendar/jewish-date/run-tests.sh
       - run: docker compose down
