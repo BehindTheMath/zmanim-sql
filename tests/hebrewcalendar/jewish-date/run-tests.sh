@@ -20,7 +20,7 @@ for line in "${lines[@]}"; do
   sql="CALL gregorian_date_to_jewish_date($gregorian, @jewishYear, @jewishMonth, @jewishDay); SELECT @jewishYear, @jewishMonth, @jewishDay;"
 
   # The `tail` is needed to drop out the following output: `failed to get console mode for stdout: The handle is invalid.`
-  output=$(mysql -u root --batch --database db1 --skip-column-names --execute "$sql" | sed 's/\t/,/g' | tail -n 1)
+  output=$($MYSQL_CMD -u root --batch --database db1 --skip-column-names --execute "$sql" | sed 's/\t/,/g' | tail -n 1)
   printf "  Output: '%s'\n" "$output"
 
   if [[ "$output" == "$expected" ]]
