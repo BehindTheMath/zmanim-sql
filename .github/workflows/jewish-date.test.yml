@@ -1,0 +1,21 @@
+name: Node.js Tests
+on: push
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    container: mysql:5.7
+    defaults:
+      run:
+        shell: bash
+    env:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: db1
+      MYSQL_INITDB_SKIP_TZINFO: 1
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          while true; do
+            mysql -u root --batch --database db1 --execute 'SELECT 1; && break;
+            sleep 1;
+            done;
+      - run: bash ./tests/run-tests.sh
